@@ -1,0 +1,104 @@
+﻿
+<div class="modal hide" id="departmentEditDialog">
+  <div class="modal-header">   
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <i class="icon-pencil"></i><strong> <a href="javascript:;" onclick="openDepartmentEditDialog();" class="black">新建部门</a></strong>
+  </div> 
+  <div class="modal-body">
+    <form name="departmentEditForm" id="departmentEditForm" action="departmentSave.htm" method="post">
+    <input type="hidden" name="id" value=""/>
+    <input type="hidden" name="seq" value=""/>
+    <input type="hidden" id="parentId" name="parentId" value=""/>
+    <table class="table-condensed">
+      <tr>
+        <td class="td-left">上级部门：&nbsp;</td>
+        <td class="td-right">
+	        <div class="selectBox">
+	          <span class="selectTxt"></span>
+	          <div class="option">
+	            <div id="tree" class="ztree"></div>
+	          </div>
+	        </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-left"><span class="red"> * </span>部门名称：&nbsp;</td>
+        <td class="td-right"><input type="text" name="name" id="name" class="span3" maxlength="60" value=""></td>
+      </tr>
+      <tr>
+        <td class="td-left">部门编码：&nbsp;</td>
+        <td class="td-right"><input type="text" name="code" id="code" class="span3" maxlength="20" value=""></td>
+      </tr>
+      <tr>
+        <td class="td-left">描述：&nbsp;</td>
+        <td class="td-right"><textarea name="note" id="note" class="w300 h100"></textarea></td>
+      </tr>
+    </table>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" data-dismiss="modal"><i class="icon-remove"></i>　关　闭　</button>&nbsp;
+    <button type="button" id="submitBtn" class="btn btn-primary"><i class="icon-ok icon-white"></i>　提　交　</button>
+  </div>
+</div>
+<script>
+var setting = {
+    view: {	
+        dblClickExpand: false
+	},
+    data: {
+        simpleData: {enable: true}
+    },
+    callback: {
+		onClick: onClick
+	}
+};
+
+var zNodes =[{"id":1,"open":"true","pId":0,"name":"点击科技有限公司"},{"id":2,"open":"true","pId":1,"name":"人事部"},{"id":3,"open":"true","pId":1,"name":"财务部"},{"id":4,"open":"true","pId":1,"name":"销售部"},{"id":5,"open":"true","pId":1,"name":"技术部"},{"id":6,"open":"true","pId":1,"name":"内容部"}];
+
+function onClick(e, treeId, treeNode) {
+    $(".selectTxt").text(treeNode.name);
+    $("#parentId").val(treeNode.id);
+}
+
+$(document).ready(function() {
+    $.fn.zTree.init($("#tree"), setting, zNodes);
+
+    var treeObj = $.fn.zTree.getZTreeObj("tree");
+    var node = treeObj.getNodeByParam("id", 0, null);
+    treeObj.selectNode(node,false);
+    
+	$(".selectBox").click(function(event) {
+		event.stopPropagation();
+		$(this).find(".option").toggle();
+		$(this).parent().siblings().find(".option").hide();
+	});
+	
+	$(document).click(function(event) {
+		var e = $(event.target);
+		if ($(".selectBox").is(":visible") && e.attr("class") != "option"	&& !e.parent(".option").length) {
+			$('.option').hide();
+		}	
+	});
+});
+
+
+$(document).ready(function() {
+	$("#submitBtn").click(function() {
+		if (checkData()) {
+			$("#departmentEditForm").submit();
+		}
+	});
+});
+
+
+function checkData() {
+    if (!checkNull("#name", "名称"))
+		return false;
+				
+	if (!checkMax("#note", 500,"描述"))
+		return false;
+	
+	return true;
+}
+</script>

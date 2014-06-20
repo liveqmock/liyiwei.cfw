@@ -1,0 +1,43 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>部门树</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link href="../widget/charisma/css/charisma-app.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../widget/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+<script src="../widget/zTree/js/jquery.ztree.core-3.5.js"></script>
+</head>
+<body>
+<div class="row">		
+  <div class="box">
+    <div class="box-header well">
+	  <h5><a href="departmentTree.htm?type=0"></a> 组织机构</h5>
+    </div>
+    <div class="box-content">
+      <div id="tree" class="ztree"></div>
+    </div>
+  </div>
+</div>
+<script>
+var setting = {
+    data: {
+        simpleData: {enable: true}
+    }
+};
+var zNodes =[{"id":1,"open":"true","pId":0,"name":"点击科技有限公司","target":"departmentContent","url":"departmentList.htm?pId=1"},{"id":2,"pId":1,"name":"人事部","target":"departmentContent","url":"departmentList.htm?pId=2"},{"id":3,"pId":1,"name":"财务部","target":"departmentContent","url":"departmentList.htm?pId=3"},{"id":4,"pId":1,"name":"销售部","target":"departmentContent","url":"departmentList.htm?pId=4"},{"id":5,"pId":1,"name":"技术部","target":"departmentContent","url":"departmentList.htm?pId=5"},{"id":6,"pId":1,"name":"内容部","target":"departmentContent","url":"departmentList.htm?pId=6"}];
+
+$(document).ready(function(){
+    $.fn.zTree.init($("#tree"), setting, zNodes);
+    
+    var clientHeight = document.documentElement.clientHeight - 48;
+    $(".box").css("height",clientHeight + "px");
+});
+
+</script>
+</body>
+</html>

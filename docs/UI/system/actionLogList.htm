@@ -1,0 +1,223 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>查看操作日志</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../js/common/jquery-common.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+<script src="../widget/My97DatePicker/WdatePicker.js"></script>
+</head>
+
+<body>
+<form name="form1" id="form1" action="actionLogList.htm" method="post">
+<input type="hidden" id="id" name="id"/>
+<input type="hidden" id="pn" name="pn" value="1"/>
+<input type="hidden" id="orderby" name="orderby" value="actionLog.id"/>
+<input type="hidden" id="descflag" name="descflag" value="desc"/>
+<div class="container-fluid">
+  <ul class="breadcrumb">
+    <li class="active"><strong><i class="icon-th-large"></i> <a href="actionLogList.htm" class="black">查看操作日志</a></strong></li>
+  </ul>
+  <div class="well form-search">
+    &nbsp;系统：<input type="text" name="querySystem" id="querySystem" class="input-small" value=""/>
+    &nbsp;模块：<input type="text" name="queryModule" id="queryModule" class="input-small" value=""/>
+    &nbsp;动作：<input type="text" name="queryAction" id="queryAction" class="input-small" value=""/>
+    &nbsp;操作人：<select name="queryUserId" id="queryUserId" >
+<option value="" selected="selected"> -请选择- </option>
+<option value="1">admin</option>
+<option value="2">liyiwei</option>
+<option value="3">jixiaoyu</option>
+<option value="4">xiaxin</option>
+</select>
+    &nbsp;操作时间：<input type="text" name="queryStartLogTime" id="queryStartLogTime" class="input-small Wdate" onClick="WdatePicker();" value=""/>
+     - <input type="text" name="queryEndLogTime" id="queryEndLogTime" class="input-small Wdate" onClick="WdatePicker();" value=""/>
+    &nbsp;<button type="button" id="queryIt" class="btn"><i class="icon-search"></i> 查  询 </button>
+  </div>
+  <table class="table-page">
+    <tr>
+      <td>
+      </td>
+      <td width="70%" align="right"><div class="page-list">
+  <div class="page">
+    <div class="recordcount">共 <font color="red">95</font> 条记录&nbsp;</div>
+  	<span class="prev">上一页</span>
+  		<span class="current" onclick="goPage(1);">1</span>
+  		<a href="javascript:;" onclick="goPage(2);">2</a>
+  		<a href="javascript:;" onclick="goPage(3);">3</a>
+  		<a href="javascript:;" onclick="goPage(4);">4</a>
+  		<a href="javascript:;" onclick="goPage(5);">5</a>
+  		<a href="javascript:;" onclick="goPage(6);">6</a>
+  	  <span>..</span>
+  	  <a href="javascript:;" onclick="goPage(12);">12</a>
+  	<a href="javascript:;" class="next" onclick="goPage(2);">下一页</a>
+  </div>	 
+</div>
+<script>
+function goPage(pn) {
+	document.form1.pn.value = pn;
+	document.form1.submit();
+}
+</script> 
+              </td>
+    </tr>
+  </table>
+  <table class="table table-bordered table-condensed">
+    <thead>
+    <tr>
+      <th width="30">序号</th>
+      <th>系统</th>
+      <th>模块</th>
+      <th>动作</th>
+      <th>操作对象</th>
+      <th>说明</th>
+      <th>IP</th>
+      <th>操作人</th>
+      <th>操作时间</th>
+   </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="h25 tc">1</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?querySystem=通用框架系统" class="black">通用框架系统</td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryModule=用户" class="black">用户</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryAction=登录" class="black">登录</a></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">admin登录成功</td>
+      <td class="h25 tc">127.0.0.1</td>
+      <td class="h25 tc">admin</td>
+      <td class="h25 tc">2013-03-10 22:15</td>
+    </tr>
+    <tr>
+      <td class="h25 tc">2</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?querySystem=通用框架系统" class="black">通用框架系统</td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryModule=用户" class="black">用户</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryAction=登录" class="black">登录</a></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">admin登录成功</td>
+      <td class="h25 tc">127.0.0.1</td>
+      <td class="h25 tc">admin</td>
+      <td class="h25 tc">2013-03-10 21:56</td>
+    </tr>
+    <tr>
+      <td class="h25 tc">3</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?querySystem=通用框架系统" class="black">通用框架系统</td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryModule=用户" class="black">用户</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryAction=登录" class="black">登录</a></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">admin登录成功</td>
+      <td class="h25 tc">127.0.0.1</td>
+      <td class="h25 tc">admin</td>
+      <td class="h25 tc">2013-03-10 17:41</td>
+    </tr>
+    <tr>
+      <td class="h25 tc">4</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?querySystem=通用框架系统" class="black">通用框架系统</td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryModule=用户" class="black">用户</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryAction=登录" class="black">登录</a></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">admin登录成功</td>
+      <td class="h25 tc">127.0.0.1</td>
+      <td class="h25 tc">admin</td>
+      <td class="h25 tc">2013-03-10 17:37</td>
+    </tr>
+    <tr>
+      <td class="h25 tc">5</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?querySystem=通用框架系统" class="black">通用框架系统</td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryModule=用户" class="black">用户</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryAction=登录" class="black">登录</a></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">admin登录成功</td>
+      <td class="h25 tc">127.0.0.1</td>
+      <td class="h25 tc">admin</td>
+      <td class="h25 tc">2013-03-01 18:44</td>
+    </tr>
+    <tr>
+      <td class="h25 tc">6</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?querySystem=通用框架系统" class="black">通用框架系统</td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryModule=用户" class="black">用户</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryAction=登录" class="black">登录</a></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">admin登录成功</td>
+      <td class="h25 tc">127.0.0.1</td>
+      <td class="h25 tc">admin</td>
+      <td class="h25 tc">2013-02-28 15:17</td>
+    </tr>
+    <tr>
+      <td class="h25 tc">7</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?querySystem=通用框架系统" class="black">通用框架系统</td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryModule=用户" class="black">用户</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryAction=登录" class="black">登录</a></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">admin登录成功</td>
+      <td class="h25 tc">127.0.0.1</td>
+      <td class="h25 tc">admin</td>
+      <td class="h25 tc">2013-02-28 15:17</td>
+    </tr>
+    <tr>
+      <td class="h25 tc">8</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?querySystem=通用框架系统" class="black">通用框架系统</td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryModule=用户" class="black">用户</a></td>
+      <td class="h25 tc"><a href="actionLogList.htm?queryAction=登录" class="black">登录</a></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">admin登录成功</td>
+      <td class="h25 tc">127.0.0.1</td>
+      <td class="h25 tc">admin</td>
+      <td class="h25 tc">2013-02-28 15:13</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</form>
+<div id="popWindow"></div>
+<script>
+$(document).ready(function(){
+	$("#queryIt").click(function(){
+        $("#pn").val("1");
+        $("#form1").submit();
+	});
+});
+
+function sortIt(orderby, descflag) {
+    $("#pn").val("1");
+    $("#orderby").val(orderby);
+    $("#descflag").val(descflag);
+    $("#form1").submit();
+}
+
+function deleteIt(id) {
+    var result = window.confirm("您确认要删除吗？");
+    if (!result) {
+        return false;
+    }
+    var url = "actionLogDelete.htm?id=" + id;
+  	$.post(url, function(data) {
+  		alert(data.msg);
+        window.location.reload();
+    }, "json");
+}
+
+function deleteSelect() {
+	var ids = getCheckBoxSelectValue("chkId");
+    if (ids == "") {
+        alert("请选择删除对象！");
+        return false;
+    }
+
+    var result = window.confirm("您确认要删除所选吗？");
+    if (!result) {
+        return false;
+    }
+    var url = "actionLogDeleteSelect.htm?ids=" + ids;
+  	$.post(url, function(data) {
+  	    alert(data.msg);
+  	    window.location.reload();
+    }, "json");
+}
+
+</script>
+</body>
+</html>

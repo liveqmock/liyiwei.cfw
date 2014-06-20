@@ -1,0 +1,249 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>用户列表</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../js/common/jquery-common.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+<script src="../widget/My97DatePicker/WdatePicker.js"></script>
+</head>
+
+<body>
+<form name="form1" id="form1" action="userList.htm" method="post">
+<input type="hidden" name="id"/>
+<input type="hidden" name="pn" value="1"/>
+<input type="hidden" name="orderby" value="user.id"/>
+<input type="hidden" name="descflag"/>
+<input type="hidden" name="departmentId" value=""/>
+<div class="container-fluid">
+  <ul class="breadcrumb">
+    <li class="active"><strong><i class="icon-th-large"></i> <a href="userList.htm?departmentId=" class="black">用户管理</a></strong></li>
+  </ul>
+  <div class="well form-search">
+    &nbsp;名称：<input type="text" name="queryUsername" id="queryUsername" class="input-normal" value=""/>
+    &nbsp;真实名称：<input type="text" name="queryRealname" id="queryRealname" class="input-normal" value=""/>
+    &nbsp;状态：<select name="queryStatus" id="queryStatus" >
+<option value="" selected="selected"> -请选择- </option>
+<option value="1">激活</option>
+<option value="0">冻结</option>
+</select>
+    &nbsp;<button type="button" onclick="return queryIt();" class="btn"><i class="icon-search"></i> 查  询 </button>
+  </div>
+  <table class="table-page">
+    <tr>
+      <td>
+        <a class="btn" href="userEdit.htm?departmentId="><i class="icon-plus"></i> 新建用户</a>
+        <button type="button" class="btn" onclick="return deleteSelect();"><i class="icon-trash"></i> 删除</button>
+      </td>
+      <td width="70%" align="right"><div class="page-list">
+  <div class="page">
+    <div class="recordcount">共 <font color="red">4</font> 条记录&nbsp;</div>
+  	<span class="prev">上一页</span>
+  		<span class="current" onclick="goPage(1);">1</span>
+  	<span class="next">下一页</span>
+  </div>	 
+</div>
+<script>
+function goPage(pn) {
+	document.form1.pn.value = pn;
+	document.form1.submit();
+}
+</script> 
+              </td>
+    </tr>
+  </table>
+  <table class="table table-bordered table-condensed">
+    <thead>
+    <tr>
+      <th width="20"><input type="checkbox" name="chkAll" id="chkAll" onclick='checkBoxSelectAll("chkAll","chkId");'></th>
+      <th width="30">序号</th>
+      <th>部门</th>
+      <th>名称</th>
+      <th>真实名称</th>
+      <th>Email</th>
+      <th>手机号</th>
+      <th>角色</th>
+      <th>状态</th>
+      <th width="120">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="1"/></td>
+      <td class="h25 tc"><a href="userView.htm?id=1">1</a></td>
+      <td class="h25 tc">技术部</td>
+      <td class="h25 tc">admin</td>
+      <td class="h25 tc">系统管理员</td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">系统管理员</td>
+      <td class="h25 tc">激活</td>
+      <td class="h25 tc">
+        <a href="userEdit.htm?id=1">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('1');">删除</a>
+        |&nbsp;<a href="javascript:;" onclick="return statusSet('1',0);">冻结</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="2"/></td>
+      <td class="h25 tc"><a href="userView.htm?id=2">2</a></td>
+      <td class="h25 tc">技术部</td>
+      <td class="h25 tc">liyiwei</td>
+      <td class="h25 tc">李一伟</td>
+      <td class="h25 tc">liyiwei1975@163.com</td>
+      <td class="h25 tc">13910500031</td>
+      <td class="h25 tc">技术</td>
+      <td class="h25 tc">激活</td>
+      <td class="h25 tc">
+        <a href="userEdit.htm?id=2">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('2');">删除</a>
+        |&nbsp;<a href="javascript:;" onclick="return statusSet('2',0);">冻结</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="3"/></td>
+      <td class="h25 tc"><a href="userView.htm?id=3">3</a></td>
+      <td class="h25 tc">内容部</td>
+      <td class="h25 tc">jixiaoyu</td>
+      <td class="h25 tc">纪晓语</td>
+      <td class="h25 tc">jixiaoyu@sina.com</td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">编辑</td>
+      <td class="h25 tc">激活</td>
+      <td class="h25 tc">
+        <a href="userEdit.htm?id=3">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('3');">删除</a>
+        |&nbsp;<a href="javascript:;" onclick="return statusSet('3',0);">冻结</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="4"/></td>
+      <td class="h25 tc"><a href="userView.htm?id=4">4</a></td>
+      <td class="h25 tc">销售部</td>
+      <td class="h25 tc">xiaxin</td>
+      <td class="h25 tc">夏昕</td>
+      <td class="h25 tc">xiaxin@sina.com</td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">销售</td>
+      <td class="h25 tc">激活</td>
+      <td class="h25 tc">
+        <a href="userEdit.htm?id=4">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('4');">删除</a>
+        |&nbsp;<a href="javascript:;" onclick="return statusSet('4',0);">冻结</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</form>
+<div id="popWindow"></div>
+<script>    
+function queryIt() {
+    document.form1.pn.value = "1";
+    document.form1.submit();
+}
+
+function sortIt(orderby,descflag) {
+    document.form1.pn.value = "1";
+    document.form1.orderby.value = orderby;
+    document.form1.descflag.value = descflag;
+    document.form1.submit();
+}
+
+function deleteIt(id) {
+    var result = window.confirm("您确认要删除吗？");
+    if (!result) {
+        return false; 
+    }
+    var url = "userDelete.htm?id=" + id;
+  	$.post(url, function(data) {
+  		alert(data.msg);
+  		window.location.reload();
+    }, "json");
+}
+
+function deleteSelect() {
+	var ids = getCheckBoxSelectValue("chkId");
+	if(ids == ""){
+	    alert ("请选择删除对象！");
+		return false;
+	}
+
+	var result = window.confirm("您确认要删除所选吗？");
+	if (!result) {
+		return false; 
+	}
+	var url = "userDeleteSelect.htm?ids=" + ids;
+  	$.post(url, function(data) {
+  		alert(data.msg);
+  		window.location.reload();
+    }, "json");
+}
+
+function statusSet(id,status) {
+    var info = status == 1?"激活":"冻结"; 
+    var result = window.confirm("您确认要" + info + "吗？");
+    if (!result) {
+        return false; 
+    }
+    var url = "userStatusSet.htm?id=" + id + "&status=" + status;
+  	$.post(url, function(data) {
+  		alert(data.msg);
+  		window.location.reload();
+    }, "json");
+}
+</script>
+</body>
+</html>

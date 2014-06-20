@@ -1,0 +1,193 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>部门列表</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link href="../widget/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../js/common/jquery-common.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+<script src="../widget/zTree/js/jquery.ztree.core-3.5.js"></script>
+</head>
+
+<body>
+<form name="form1" id="form1" action="departmentList.htm" method="post">
+<input type="hidden" name="pn" value="1"/>
+<input type="hidden" name="orderby" value="department.parentId,department.seq,department.id"/>
+<input type="hidden" name="descflag"/>
+<input type="hidden" name="pId" value=""/>
+<input type="hidden" id="sno" name="sno"/>
+<div class="container-fluid">
+  <ul class="breadcrumb">
+    <li class="active"><strong><i class="icon-th-large"></i> <a href="departmentList.htm" class="black">部门管理</a></strong></li>
+  </ul>
+  <div class="well form-search">
+    &nbsp;部门名称：<input type="text" name="queryName" id="queryName" class="input-normal" value=""/>
+    &nbsp;部门编码：<input type="text" name="queryCode" id="queryCode" class="input-normal" value=""/>
+    &nbsp;<button type="button" onclick="return queryIt();" class="btn"><i class="icon-search"></i> 查  询 </button>
+  </div>
+  <table class="table-page">
+    <tr>
+      <td>
+         <button type="button" class="btn" onclick="openDepartmentEditDialog();"><i class="icon-plus"></i> 新建部门</button>
+         
+      </td>
+      <td width="50%" align="right"><div class="page-list">
+  <div class="page">
+    <div class="recordcount">共 <font color="red">6</font> 条记录&nbsp;</div>
+  	<span class="prev">上一页</span>
+  		<span class="current" onclick="goPage(1);">1</span>
+  	<span class="next">下一页</span>
+  </div>	 
+</div>
+<script>
+function goPage(pn) {
+	document.form1.pn.value = pn;
+	document.form1.submit();
+}
+</script> 
+              </td>
+    </tr>
+  </table>
+  <table class="table table-bordered table-condensed">
+    <thead>
+    <tr>
+      <th width="30">序号</th>
+      <th>部门名称</th>
+      <th>部门编码</th>
+      <th>上级部门</th>
+      <th width="170">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="h25 tc">1</td>
+      <td class="h25 tl">点击科技有限公司</td>
+      <td class="h25 tc">001</td>
+      <td class="h25 tc"></td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openDepartmentEditDialog(1);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('1');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc">2</td>
+      <td class="h25 tl">人事部</td>
+      <td class="h25 tc">001001</td>
+      <td class="h25 tc">点击科技有限公司</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openDepartmentEditDialog(2);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('2');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc">3</td>
+      <td class="h25 tl">财务部</td>
+      <td class="h25 tc">001002</td>
+      <td class="h25 tc">点击科技有限公司</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openDepartmentEditDialog(3);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('3');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc">4</td>
+      <td class="h25 tl">销售部</td>
+      <td class="h25 tc">001003</td>
+      <td class="h25 tc">点击科技有限公司</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openDepartmentEditDialog(4);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('4');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc">5</td>
+      <td class="h25 tl">技术部</td>
+      <td class="h25 tc">001004</td>
+      <td class="h25 tc">点击科技有限公司</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openDepartmentEditDialog(5);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('5');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc">6</td>
+      <td class="h25 tl">内容部</td>
+      <td class="h25 tc">001005</td>
+      <td class="h25 tc">点击科技有限公司</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openDepartmentEditDialog(6);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('6');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</form>
+<div id="popWindow"></div>
+<script>    
+function queryIt() {
+    document.form1.pn.value = "1";
+    document.form1.submit();
+}
+
+function sortIt(orderby,descflag) {
+    document.form1.pn.value = "1";
+    document.form1.orderby.value = orderby;
+    document.form1.descflag.value = descflag;
+    document.form1.submit();
+}
+
+function deleteIt(id) {
+    var result = window.confirm("将删除此部门及此部门下所有的子部门，您确认要删除吗？");
+    if (!result) {
+        return false; 
+    }
+    var url = "departmentDelete.htm?id=" + id;
+  	$.post(url, function(data) {
+  		alert(data.msg);
+  		window.location.reload();
+    }, "json");
+}
+
+$.ajaxSetup ({
+    cache: false
+});
+
+function openDepartmentEditDialog(id) {
+	$("#popWindow").load("departmentEditDialog.htm?id=" + id + "&parentId=",function() {
+	    $('#departmentEditDialog').modal({backdrop:false,keyboard:true,show:true},'show');
+	});
+}
+
+function up(sno) {
+    $("#sno").val(sno);
+    $("#form1").attr("action","departmentUp.htm");
+    $("#form1").submit();
+}
+
+function down(sno) {
+    $("#sno").val(sno);
+    $("#form1").attr("action","departmentDown.htm");
+    $("#form1").submit();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>缓存列表</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../js/common/jquery-common.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+<script src="../widget/My97DatePicker/WdatePicker.js"></script>
+</head>
+
+<body>
+<form name="form1" id="form1" action="cacheList.htm" method="post">
+<div class="container-fluid">
+  <ul class="breadcrumb">
+    <li class="active"><strong><i class="icon-th-large"></i> <a href="cacheList.htm" class="black">缓存管理</a></strong></li>
+  </ul>
+  <div class="well form-search">
+    &nbsp;Key：<input type="text" name="queryKey" id="queryKey" class="input-normal" value=""/>
+    &nbsp;<button type="button" id="queryIt" class="btn"><i class="icon-search"></i> 查  询 </button>
+  </div>
+  <table class="table-page">
+    <tr>
+      <td>
+        <button type="button" class="btn" onclick="return deleteAll();"><i class="icon-trash"></i> 清除全部</button>
+        <button type="button" class="btn" onclick="return deleteSelect();"><i class="icon-trash"></i> 清除</button>
+      </td>
+    </tr>
+  </table>
+  <table class="table table-bordered table-condensed">
+    <thead>
+    <tr>
+      <th width="20"><input type="checkbox" name="chkAll" id="chkAll" onclick='checkBoxSelectAll("chkAll","chkId");'></th>
+      <th width="30">序号</th>
+      <th>Key</th>
+      <th>Object</th>
+      <th width="100">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="DictFieldList_customizeTable"/></td>
+      <td class="h25 tc">1</td>
+      <td class="h25 tl">DictFieldList_customizeTable</td>
+      <td class="h25 tl">[targetItem, classSetting, pageSetting]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('DictFieldList_customizeTable');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="UserList"/></td>
+      <td class="h25 tc">2</td>
+      <td class="h25 tl">UserList</td>
+      <td class="h25 tl">[com.liyiwei.cfw.user.entity.User@653f8d12, com.liyiwei.cfw.user.entity.User@2f46ccac, com.liyiwei.cfw.user.entity.User@51274873, com.liyiwei.cfw.user.entity.User@6a059fa4]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('UserList');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="DictTableList"/></td>
+      <td class="h25 tc">3</td>
+      <td class="h25 tl">DictTableList</td>
+      <td class="h25 tl">[dataSource, customizeTable, customizeField, user]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('DictTableList');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="SystemSettingCategoryList"/></td>
+      <td class="h25 tc">4</td>
+      <td class="h25 tl">SystemSettingCategoryList</td>
+      <td class="h25 tl">[systemSetting, cfw]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('SystemSettingCategoryList');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="Department"/></td>
+      <td class="h25 tc">5</td>
+      <td class="h25 tl">Department</td>
+      <td class="h25 tl">{6=com.liyiwei.cfw.user.entity.Department@17990d96, 5=com.liyiwei.cfw.user.entity.Department@3eea8847, 4=com.liyiwei.cfw.user.entity.Department@48f4c9c4, 3=com.liyiwei.cfw.user.entity.Department@5260acdc, 2=com.liyiwei.cfw.user.entity.Department@3cae39fb, 1=com.liyiwei.cfw.user.entity.Department@115c6cb}</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('Department');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="DepartmentList"/></td>
+      <td class="h25 tc">6</td>
+      <td class="h25 tl">DepartmentList</td>
+      <td class="h25 tl">[com.liyiwei.cfw.user.entity.Department@115c6cb, com.liyiwei.cfw.user.entity.Department@3cae39fb, com.liyiwei.cfw.user.entity.Department@5260acdc, com.liyiwei.cfw.user.entity.Department@48f4c9c4, com.liyiwei.cfw.user.entity.Department@3eea8847, com.liyiwei.cfw.user.entity.Department@17990d96]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('DepartmentList');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="MenuList"/></td>
+      <td class="h25 tc">7</td>
+      <td class="h25 tl">MenuList</td>
+      <td class="h25 tl">[com.liyiwei.cfw.system.entity.Menu@4f1b8540, com.liyiwei.cfw.system.entity.Menu@17c95553, com.liyiwei.cfw.system.entity.Menu@2300c858, com.liyiwei.cfw.system.entity.Menu@8611b5c, com.liyiwei.cfw.system.entity.Menu@1f4b3950, com.liyiwei.cfw.system.entity.Menu@39fc33d, com.liyiwei.cfw.system.entity.Menu@6dcadba6, com.liyiwei.cfw.system.entity.Menu@211aa79a, com.liyiwei.cfw.system.entity.Menu@5cf18070]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('MenuList');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="Menu"/></td>
+      <td class="h25 tc">8</td>
+      <td class="h25 tl">Menu</td>
+      <td class="h25 tl">{108=com.liyiwei.cfw.system.entity.Menu@5cf18070, 107=com.liyiwei.cfw.system.entity.Menu@211aa79a, 106=com.liyiwei.cfw.system.entity.Menu@6dcadba6, 105=com.liyiwei.cfw.system.entity.Menu@39fc33d, 104=com.liyiwei.cfw.system.entity.Menu@1f4b3950, 103=com.liyiwei.cfw.system.entity.Menu@8611b5c, 102=com.liyiwei.cfw.system.entity.Menu@2300c858, 101=com.liyiwei.cfw.system.entity.Menu@17c95553, 100=com.liyiwei.cfw.system.entity.Menu@4f1b8540}</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('Menu');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="DictFieldList_"/></td>
+      <td class="h25 tc">9</td>
+      <td class="h25 tl">DictFieldList_</td>
+      <td class="h25 tl">[]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('DictFieldList_');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="RoleList"/></td>
+      <td class="h25 tc">10</td>
+      <td class="h25 tl">RoleList</td>
+      <td class="h25 tl">[com.liyiwei.cfw.privilege.entity.Role@13a183d2, com.liyiwei.cfw.privilege.entity.Role@50d55a0f, com.liyiwei.cfw.privilege.entity.Role@670bb83e, com.liyiwei.cfw.privilege.entity.Role@326d234c]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('RoleList');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="User"/></td>
+      <td class="h25 tc">11</td>
+      <td class="h25 tl">User</td>
+      <td class="h25 tl">{4=com.liyiwei.cfw.user.entity.User@6a059fa4, 3=com.liyiwei.cfw.user.entity.User@51274873, 2=com.liyiwei.cfw.user.entity.User@2f46ccac, 1=com.liyiwei.cfw.user.entity.User@653f8d12}</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('User');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="Role"/></td>
+      <td class="h25 tc">12</td>
+      <td class="h25 tl">Role</td>
+      <td class="h25 tl">{4=com.liyiwei.cfw.privilege.entity.Role@326d234c, 3=com.liyiwei.cfw.privilege.entity.Role@670bb83e, 2=com.liyiwei.cfw.privilege.entity.Role@50d55a0f, 1=com.liyiwei.cfw.privilege.entity.Role@13a183d2}</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('Role');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="Privilege"/></td>
+      <td class="h25 tc">13</td>
+      <td class="h25 tl">Privilege</td>
+      <td class="h25 tl">{108=com.liyiwei.cfw.privilege.entity.Privilege@14a877c0, 107=com.liyiwei.cfw.privilege.entity.Privilege@307fc620, 106=com.liyiwei.cfw.privilege.entity.Privilege@50d4855d, 105=com.liyiwei.cfw.privilege.entity.Privilege@120fe256, 104=com.liyiwei.cfw.privilege.entity.Privilege@50b2e9be, 103=com.liyiwei.cfw.privilege.entity.Privilege@17c047f0, 102=com.liyiwei.cfw.privilege.entity.Privilege@173ebc5c, 101=com.liyiwei.cfw.privilege.entity.Privilege@53c6a7fc, 100=com.liyiwei.cfw.privilege.entity.Privilege@5fbc31d}</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('Privilege');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="PrivilegeList"/></td>
+      <td class="h25 tc">14</td>
+      <td class="h25 tl">PrivilegeList</td>
+      <td class="h25 tl">[com.liyiwei.cfw.privilege.entity.Privilege@5fbc31d, com.liyiwei.cfw.privilege.entity.Privilege@53c6a7fc, com.liyiwei.cfw.privilege.entity.Privilege@173ebc5c, com.liyiwei.cfw.privilege.entity.Privilege@17c047f0, com.liyiwei.cfw.privilege.entity.Privilege@50b2e9be, com.liyiwei.cfw.privilege.entity.Privilege@120fe256, com.liyiwei.cfw.privilege.entity.Privilege@50d4855d, com.liyiwei.cfw.privilege.entity.Privilege@307fc620, com.liyiwei.cfw.privilege.entity.Privilege@14a877c0]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('PrivilegeList');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="Dict_user_status"/></td>
+      <td class="h25 tc">15</td>
+      <td class="h25 tl">Dict_user_status</td>
+      <td class="h25 tl">[com.liyiwei.cfw.system.entity.Dict@b4aa453, com.liyiwei.cfw.system.entity.Dict@516a4aef]</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('Dict_user_status');">清除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="DictByValue"/></td>
+      <td class="h25 tc">16</td>
+      <td class="h25 tl">DictByValue</td>
+      <td class="h25 tl">{customizeField|listFlag|1=是, customizeField|listFlag|0=否, customizeField|input|8=hidden, customizeField|input|7=datetime, customizeField|input|6=date, customizeField|input|5=textarea, customizeField|input|4=checkbox, customizeField|input|3=radio, customizeField|queryFlag|1=是, customizeField|input|2=selectBox, customizeField|queryFlag|0=否, customizeField|input|1=text, customizeField|requireFlag|1=是, customizeField|requireFlag|0=否, customizeTable|targetItem|8=查看页, dataSource|defaultFlag|1=是, customizeTable|targetItem|7=弹出框编辑页, dataSource|defaultFlag|0=否, customizeTable|targetItem|6=编辑页, customizeTable|pageSetting|1=删除功能, customizeTable|targetItem|5=列表页, customizeTable|targetItem|4=控制类, customizeTable|targetItem|3=服务类, customizeTable|targetItem|2=基础服务类, customizeTable|targetItem|1=实体类, customizeField|permitNull|1=是, customizeField|permitNull|0=否, customizeField|type|4=date, customizeField|type|3=double, customizeField|type|2=int, customizeField|listInput|8=hidden, customizeField|type|1=string, customizeField|listInput|7=datetime, customizeField|trueFlag|1=true, customizeField|listInput|6=date, customizeField|trueFlag|0=false, customizeField|listInput|5=textarea, customizeField|listInput|4=checkbox, customizeField|listInput|3=radio, customizeField|listInput|2=selectBox, customizeField|listInput|1=text, customizeTable|classSetting|5=radioMethod, customizeTable|classSetting|4=checkBoxMethod, customizeTable|classSetting|3=selectBoxMethod, customizeTable|classSetting|2=nameMethod, customizeTable|classSetting|1=启用Cache, user|status|1=激活, user|status|0=冻结, dataSource|underline|1=是, dataSource|underline|0=否, customizeField|sortFlag|1=是, customizeField|sortFlag|0=否}</td>
+      <td class="h25 tc">
+        <a href="javascript:;" onclick="return deleteIt('DictByValue');">清除</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</form>
+<script>
+$(document).ready(function(){
+	$("#queryIt").click(function(){
+        $("#form1").submit();
+	});
+});
+
+
+function deleteIt(key) {
+    var result = window.confirm("您确认要清除吗？");
+    if (!result) {
+        return false;
+    }
+    var url = "cacheDelete.htm?key=" + key;
+  	$.post(url, function(data) {
+  		alert(data.msg);
+        window.location.reload();
+    }, "json");
+}
+
+function deleteSelect() {
+	var ids = getCheckBoxSelectValue("chkId");
+    if (ids == "") {
+        alert("请选择清除对象！");
+        return false;
+    }
+
+    var result = window.confirm("您确认要清除所选吗？");
+    if (!result) {
+        return false;
+    }
+    var url = "cacheDeleteSelect.htm?keys=" + ids;
+  	$.post(url, function(data) {
+  	    alert(data.msg);
+  	    window.location.reload();
+    }, "json");
+}
+
+function deleteAll() {
+    var result = window.confirm("您确认要清除吗？");
+    if (!result) {
+        return false;
+    }
+    var url = "cacheDeleteAll.htm";
+  	$.post(url, function(data) {
+  		alert(data.msg);
+        window.location.reload();
+    }, "json");
+}
+</script>
+</body>
+</html>

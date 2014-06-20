@@ -1,0 +1,35 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>toolbar</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link href="../widget/charisma/css/charisma-app.css" rel="stylesheet">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+</head>
+
+<body>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <span class="brand"><img src="../images/logo20.png"/>通用框架系统</span>
+      <a class="btn pull-right" href="javascript:exit();"><i class="icon-share-alt"></i> 退出 </a>
+      <a class="btn pull-right" onclick="show('../user/userInfo.htm')"><i class="icon-info-sign"></i> 个人信息 </a>
+      <a class="btn pull-right" href="#"><i class="icon-home"></i> 桌面 </a>
+      <span class="navbar-text pull-right"><i class="icon-user"></i> 系统管理员【技术部 - 系统管理员】 </span>
+    </div>
+  </div>
+</div>
+<script>
+function show(url) {
+	parent.content.location.href = url;
+}
+
+function exit() {
+	parent.location.replace("../main/logout.htm");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>menu</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link href="../widget/charisma/css/charisma-app.css" rel="stylesheet">
+<link href="../css/common.css" rel="stylesheet">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+<style type="text/css">
+  a{color:#000;text-decoration:none;}
+  a:hover, a:active{color:#000;text-decoration:none;background:linear-gradient(#fff, #e5e5e5);}
+  a:focus{color: #000;}
+  .scroll{background:#f5f5f5;}
+  .scrollfont{color:#f60;}
+  .choose{background:#f5eff5;}
+  .sidebar-nav {padding: 9px 0;}
+</style>  
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="main-menu-span">
+	  <div class="well nav-collapse sidebar-nav">
+		<div class="accordion nav nav-tabs" id="accordion">
+		  <div class="nav-header">菜单</div>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#menu100"><i class="icon-th-list"></i> 系统管理</a>
+            </div>
+            <div id="menu100" class="accordion-body show">
+              <div class="accordion-inner cp" href="../user/departmentMain.htm"><i class="icon-star ml10"></i> <span>组织机构管理</span></div>
+              <div class="accordion-inner cp" href="../user/userMain.htm"><i class="icon-star ml10"></i> <span>用户管理</span></div>
+              <div class="accordion-inner cp" href="../privilege/roleList.htm"><i class="icon-star ml10"></i> <span>角色管理</span></div>
+              <div class="accordion-inner cp" href="../system/menuMain.htm"><i class="icon-star ml10"></i> <span>菜单管理</span></div>
+              <div class="accordion-inner cp" href="../system/dictList.htm"><i class="icon-star ml10"></i> <span>数据字典管理</span></div>
+              <div class="accordion-inner cp" href="../system/systemSetting.htm"><i class="icon-star ml10"></i> <span>系统设置</span></div>
+              <div class="accordion-inner cp" href="../system/actionLogList.htm"><i class="icon-star ml10"></i> <span>查看操作日志</span></div>
+              <div class="accordion-inner cp" href="../system/cacheList.htm"><i class="icon-star ml10"></i> <span>缓存管理</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+	</div>     
+  </div>
+</div>  
+<script>
+function show(url) {
+	parent.content.location.href = url;
+}
+
+$(".accordion-inner").click(function(){
+    $('.accordion-inner').removeClass('choose');
+  	$(this).addClass('choose');
+  	
+  	if($(this).attr('href') != undefined){
+  	    show($(this).attr('href'));
+  	}
+});
+
+$(".accordion-inner").mouseover(function(){
+  	$(this).addClass('scroll');
+  	$(this).find('span').addClass('scrollfont');
+});
+
+$(".accordion-inner").mouseout(function(){
+    $(this).removeClass('scroll');
+    $(this).find('span').removeClass('scrollfont');
+});
+</script>             
+</body>
+</html>

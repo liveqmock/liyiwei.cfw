@@ -1,0 +1,42 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>菜单树</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link href="../widget/charisma/css/charisma-app.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../widget/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+<script src="../widget/zTree/js/jquery.ztree.core-3.5.js"></script>
+</head>
+<body>
+<div class="row">		
+  <div class="box">
+    <div class="box-header well">
+	  <h5><a href="menuTree.htm"><i class="icon-refresh"></i></a> 菜单</h5>
+    </div>
+    <div class="box-content">
+      <div id="tree" class="ztree"></div>
+    </div>
+  </div>
+</div>
+<script>
+var setting = {
+    data: {
+        simpleData: {enable: true}
+    }
+};
+var zNodes =[{"id":100,"open":"true","pId":0,"name":"系统管理","target":"menuContent","url":"menuList.htm?parentId=100"},{"id":101,"pId":100,"name":"组织机构管理","target":"menuContent","url":"menuList.htm?parentId=101"},{"id":102,"pId":100,"name":"用户管理","target":"menuContent","url":"menuList.htm?parentId=102"},{"id":103,"pId":100,"name":"角色管理","target":"menuContent","url":"menuList.htm?parentId=103"},{"id":104,"pId":100,"name":"菜单管理","target":"menuContent","url":"menuList.htm?parentId=104"},{"id":105,"pId":100,"name":"数据字典管理","target":"menuContent","url":"menuList.htm?parentId=105"},{"id":106,"pId":100,"name":"系统设置","target":"menuContent","url":"menuList.htm?parentId=106"},{"id":107,"pId":100,"name":"查看操作日志","target":"menuContent","url":"menuList.htm?parentId=107"},{"id":108,"pId":100,"name":"缓存管理","target":"menuContent","url":"menuList.htm?parentId=108"}];
+
+$(document).ready(function(){
+    $.fn.zTree.init($("#tree"), setting, zNodes);
+    
+    var clientHeight = document.documentElement.clientHeight - 48;
+    $(".box").css("height",clientHeight + "px");
+});
+</script>
+</body>
+</html>

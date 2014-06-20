@@ -1,0 +1,239 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>菜单列表</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link href="../widget/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../js/common/jquery-common.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+<script src="../widget/zTree/js/jquery.ztree.core-3.5.js"></script>
+</head>
+
+<body>
+<form name="form1" id="form1" action="menuList.htm" method="post">
+<input type="hidden" id="id" name="id"/>
+<input type="hidden" id="pn" name="pn" value="1"/>
+<input type="hidden" id="orderby" name="orderby" value="menu.parentId,menu.seq,menu.id"/>
+<input type="hidden" id="descflag" name="descflag"/>
+<input type="hidden" id="sno" name="sno"/>
+<input type="hidden" name="parentId" value=""/>
+<div class="container-fluid">
+  <ul class="breadcrumb">
+    <li class="active"><strong><i class="icon-th-large"></i> <a href="menuList.htm" class="black">菜单管理</a></strong></li>
+  </ul>
+  <div class="well form-search">
+    &nbsp;名称：<input type="text" name="queryName" id="queryName" class="input-normal" value=""/>
+    &nbsp;<button type="button" id="queryIt" class="btn"><i class="icon-search"></i> 查  询 </button>
+  </div>
+  <table class="table-page">
+    <tr>
+      <td>
+        <button type="button" class="btn" onclick="openMenuEditDialog();"><i class="icon-plus"></i> 新建菜单</button>
+        
+        <button type="button" class="btn" onclick="return deleteSelect();"><i class="icon-trash"></i> 删除</button>
+      </td>
+      <td width="50%" align="right"><div class="page-list">
+  <div class="page">
+    <div class="recordcount">共 <font color="red">9</font> 条记录&nbsp;</div>
+  	<span class="prev">上一页</span>
+  		<span class="current" onclick="goPage(1);">1</span>
+  		<a href="javascript:;" onclick="goPage(2);">2</a>
+  	<a href="javascript:;" class="next" onclick="goPage(2);">下一页</a>
+  </div>	 
+</div>
+<script>
+function goPage(pn) {
+	document.form1.pn.value = pn;
+	document.form1.submit();
+}
+</script> 
+              </td>
+    </tr>
+  </table>
+  <table class="table table-bordered table-condensed">
+    <thead>
+    <tr>
+      <th width="20"><input type="checkbox" name="chkAll" id="chkAll" onclick='checkBoxSelectAll("chkAll","chkId");'></th>
+      <th width="30">序号</th>
+      <th>名称</th>
+      <th>图标</th>
+      <th>链接</th>
+      <th>上级菜单</th>
+      <th width="170">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="100"/></td>
+      <td class="h25 tc">1</td>
+      <td class="h25 tl">系统管理</td>
+      <td class="h25 tl"></td>
+      <td class="h25 tl"></td>
+      <td class="h25 tc"></td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openMenuEditDialog(100);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('100');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="101"/></td>
+      <td class="h25 tc">2</td>
+      <td class="h25 tl">组织机构管理</td>
+      <td class="h25 tl"></td>
+      <td class="h25 tl">../user/departmentMain.htm</td>
+      <td class="h25 tc">系统管理</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openMenuEditDialog(101);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('101');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="102"/></td>
+      <td class="h25 tc">3</td>
+      <td class="h25 tl">用户管理</td>
+      <td class="h25 tl"></td>
+      <td class="h25 tl">../user/userMain.htm</td>
+      <td class="h25 tc">系统管理</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openMenuEditDialog(102);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('102');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="103"/></td>
+      <td class="h25 tc">4</td>
+      <td class="h25 tl">角色管理</td>
+      <td class="h25 tl"></td>
+      <td class="h25 tl">../privilege/roleList.htm</td>
+      <td class="h25 tc">系统管理</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openMenuEditDialog(103);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('103');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="104"/></td>
+      <td class="h25 tc">5</td>
+      <td class="h25 tl">菜单管理</td>
+      <td class="h25 tl"></td>
+      <td class="h25 tl">../system/menuMain.htm</td>
+      <td class="h25 tc">系统管理</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openMenuEditDialog(104);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('104');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="105"/></td>
+      <td class="h25 tc">6</td>
+      <td class="h25 tl">数据字典管理</td>
+      <td class="h25 tl"></td>
+      <td class="h25 tl">../system/dictList.htm</td>
+      <td class="h25 tc">系统管理</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openMenuEditDialog(105);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('105');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="106"/></td>
+      <td class="h25 tc">7</td>
+      <td class="h25 tl">系统设置</td>
+      <td class="h25 tl"></td>
+      <td class="h25 tl">../system/systemSetting.htm</td>
+      <td class="h25 tc">系统管理</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openMenuEditDialog(106);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('106');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc"><input type="checkbox" name="chkId" value="107"/></td>
+      <td class="h25 tc">8</td>
+      <td class="h25 tl">查看操作日志</td>
+      <td class="h25 tl"></td>
+      <td class="h25 tl">../system/actionLogList.htm</td>
+      <td class="h25 tc">系统管理</td>
+      <td class="h25 tl">
+        <a href="javascript:;" onclick="openMenuEditDialog(107);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('107');">删除</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</form>
+<div id="popWindow"></div>
+<script>
+$(document).ready(function(){
+	$("#queryIt").click(function(){
+        $("#pn").val("1");
+        $("#form1").submit();
+	});
+});
+
+function sortIt(orderby, descflag) {
+    $("#pn").val("1");
+    $("#orderby").val(orderby);
+    $("#descflag").val(descflag);
+    $("#form1").submit();
+}
+
+function deleteIt(id) {
+    var result = window.confirm("您确认要删除吗？");
+    if (!result) {
+        return false;
+    }
+    var url = "menuDelete.htm?id=" + id;
+  	$.post(url, function(data) {
+  		alert(data.msg);
+        window.location.reload();
+    }, "json");
+}
+
+function deleteSelect() {
+	var ids = getCheckBoxSelectValue("chkId");
+    if (ids == "") {
+        alert("请选择删除对象！");
+        return false;
+    }
+
+    var result = window.confirm("您确认要删除所选吗？");
+    if (!result) {
+        return false;
+    }
+    var url = "menuDeleteSelect.htm?ids=" + ids;
+  	$.post(url, function(data) {
+  	    alert(data.msg);
+  	    window.location.reload();
+    }, "json");
+}
+
+$.ajaxSetup ({
+    cache: false
+});
+
+function openMenuEditDialog(id) {
+    $("#popWindow").load("menuEditDialog.htm?id=" + id + "&parentId=", function() {
+        $('#menuEditDialog').modal({backdrop:false,keyboard:true,show:true},'show');
+	});
+}
+
+function up(sno) {
+    $("#sno").val(sno);
+    $("#form1").attr("action","menuUp.htm");
+    $("#form1").submit();
+}
+
+function down(sno) {
+    $("#sno").val(sno);
+    $("#form1").attr("action","menuDown.htm");
+    $("#form1").submit();
+}
+</script>
+</body>
+</html>

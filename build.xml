@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="liyiwei.cfw" basedir="." default="copy">
+	<!-- project properties -->
+	<property name="liyiwei.cfw" value="liyiwei.cfw" />
+	<property name="root" value="." />
+
+	<property name="src" value="${root}/src/java" />
+	<property name="resources" value="${root}/src/resources" />
+	<property name="web" value="${root}/WebContent" />
+	<property name="webinf" value="${web}/WEB-INF" />
+	<property name="metadata" value="${web}/META-INF" />
+	<property name="classes" value="${webinf}/classes" />
+	<property name="lib" value="${webinf}/lib" />
+	<property name="deploy" value="${root}/deploy" />
+
+	<!-- project classpath -->
+	<path id="classpath">
+		<path location="${classes}" />
+		<path location="${lib}" />
+
+		<fileset dir="${lib}">
+			<include name="*.jar" />
+			<exclude name="liyiwei-cfw*.jar" />
+		</fileset>
+	</path>
+
+	<!-- clean -->
+	<target name="clean">
+		<delete dir="${classes}" />
+		<delete file="${deploy}/liyiwei-cfw.war" />
+	</target>
+
+	<!-- resources -->
+	<target name="resource">
+		<copy todir="${webinf}/classes">
+			<fileset dir="${resources}">
+				<include name="*.properties" />
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- compile -->
+	<target name="compile">
+		<javac srcdir="${src}" destdir="${classes}" debug="true" includeAntRuntime="false">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<!-- jar -->
+	<target name="jar" depends="compile">
+		<jar jarfile="${lib}/liyiwei-cfw.jar">
+			<fileset dir="${classes}">
+				<include name="com/liyiwei/cfw/**/*.class" />
+			</fileset>
+		</jar>
+		<jar jarfile="${lib}/liyiwei-cms.jar">
+			<fileset dir="${classes}">
+				<include name="com/liyiwei/cms/**/*.class" />
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="copy" depends="jar">
+		<copy tofile="F:/workspace_liyiwei/liyiwei.customize/WebContent/WEB-INF/lib/liyiwei-cfw.jar" file="${lib}/liyiwei-cfw.jar" overwrite="true"/>
+		<copy tofile="F:/workspace_liyiwei/liyiwei.demo/WebContent/WEB-INF/lib/liyiwei-cfw.jar" file="${lib}/liyiwei-cfw.jar" overwrite="true"/>
+		<copy tofile="F:/workspace_liyiwei/liyiwei.mini/WebContent/WEB-INF/lib/liyiwei-cfw.jar" file="${lib}/liyiwei-cfw.jar" overwrite="true"/>
+		<copy tofile="F:/workspace_liyiwei/liyiwei.bill/WebContent/WEB-INF/lib/liyiwei-cfw.jar" file="${lib}/liyiwei-cfw.jar" overwrite="true"/>
+		<copy tofile="F:/workspace_liyiwei/liyiwei.license/WebContent/WEB-INF/lib/liyiwei-cfw.jar" file="${lib}/liyiwei-cfw.jar" overwrite="true"/>
+		<copy tofile="F:/workspace_liyiwei/yuefuCms/WebContent/WEB-INF/lib/liyiwei-cfw.jar" file="${lib}/liyiwei-cfw.jar" overwrite="true"/>
+		<copy tofile="F:/workspace_liyiwei/crm/WebContent/WEB-INF/lib/liyiwei-cfw.jar" file="${lib}/liyiwei-cfw.jar" overwrite="true"/>
+		<copy tofile="F:/workspace_liyiwei/project/WebContent/WEB-INF/lib/liyiwei-cfw.jar" file="${lib}/liyiwei-cfw.jar" overwrite="true"/>
+	</target>
+
+	<!-- war -->
+	<target name="war" depends="compile,jar,clean,resource">
+		<war basedir="${web}" warfile="${deploy}/liyiwei-cfw.war" webxml="${webinf}/web.xml">
+			<exclude name="WEB-INF/classes/com/**" />
+			<exclude name="WEB-INF/classes/*.class" />
+			<exclude name="WEB-INF/web.xml" />
+		</war>
+	</target>
+</project>

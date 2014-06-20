@@ -1,0 +1,172 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>新建用户</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link href="../widget/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css"/>
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../js/common/jquery-common.js"></script>
+<script src="../widget/zTree/js/jquery.ztree.core-3.5.js"></script>
+</head>
+
+<body>
+<form name="form1" id="form1" action="userSave.htm" method="post">
+<input type="hidden" id="id" name="id" value=""/>
+<input type="hidden" name="rawPassword" value=""/>
+<input type="hidden" name="status" value="1"/>
+<input type="hidden" name="registerTime" value=""/>
+<input type="hidden" name="lastVisitTime" value=""/>
+<input type="hidden" name="lastIp" value=""/>
+<input type="hidden" id="departmentId" name="departmentId" value=""/>
+<div class="container-fluid">
+<ul class="breadcrumb"><strong><i class="icon-edit"></i> <a href="userList.htm" class="black">用户管理</a> > <a href="javascript:;" onclick="window.location.reload();" class="black">新建用户</a></strong></ul>
+<table class="table table-condensed table-bordered">
+  <thead>
+  <tr>
+    <th height="25" align="center" colspan="2"><strong>用户信息</strong></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="td-left">上级部门：&nbsp;</td>
+    <td class="td-right">
+      <div class="selectBox">
+        <span class="selectTxt"></span>
+        <div class="option">
+          <div id="tree" class="ztree"></div>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="td-left"><label class="Validform_label"><span class="red"> * </span>名称：&nbsp;</label></td>
+    <td class="td-right"><input type="text" name="username" id="username" class="span3" maxlength="20" value=""></td>
+  </tr>
+  <tr>
+    <td class="td-left"><span class="red"> * </span>密码：&nbsp;</td>
+    <td class="td-right"><input type="password" name="password" id="password" class="span3" maxlength="255" value="">&nbsp;6-12位密码</td>
+  </tr>
+  <tr>
+    <td class="td-left">真实名称：&nbsp;</td>
+    <td class="td-right"><input type="text" name="realname" id="realname" class="span3" maxlength="40" value=""></td>
+  </tr>
+  <tr>
+    <td class="td-left">职位：&nbsp;</td>
+    <td class="td-right"><input type="text" name="title" id="title" class="span3" maxlength="40" value=""></td>
+  </tr>
+  <tr>
+    <td class="td-left">Email：&nbsp;</td>
+    <td class="td-right"><input type="text" name="email" id="email" class="span3" maxlength="60" value=""></td>
+  </tr>
+  <tr>
+    <td class="td-left">手机号：&nbsp;</td>
+    <td class="td-right"><input type="text" name="mobile" id="mobile" class="span3" maxlength="60" value=""></td>
+  </tr>
+  <tr>
+    <td class="td-left">分机号：&nbsp;</td>
+    <td class="td-right"><input type="text" name="ext" id="ext" class="span3" maxlength="20" value=""></td>
+  </tr>
+  <tr>
+    <td class="td-left">备注：&nbsp;</td>
+    <td class="td-right"><textarea name="note" id="note" class="w300 h100"></textarea></td>
+  </tr>
+  <tr>
+    <td class="td-left">角色：&nbsp;</td>
+    <td class="td-right"><input type="checkbox" name="roles" value="1" >系统管理员&nbsp;<input type="checkbox" name="roles" value="2" >技术&nbsp;<input type="checkbox" name="roles" value="3" >编辑&nbsp;<input type="checkbox" name="roles" value="4" >销售&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="td-left">&nbsp;</td>
+    <td class="td-right">
+      <button type="button" id="submitBtn" class="btn btn-primary" onclick="return submitIt();"><i class="icon-ok icon-white"></i>　提　交　</button>&nbsp;
+      <button type="button" class="btn" onclick="history.go(-1);"><i class="icon-share-alt"></i>　返　回　</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+</form>
+<script>
+var setting = {
+    view: {	
+        dblClickExpand: false
+	},
+    data: {
+        simpleData: {enable: true}
+    },
+    callback: {
+		onClick: onClick
+	}
+};
+
+var zNodes =[{"id":1,"open":"true","pId":0,"name":"点击科技有限公司","isParent":"true"},{"id":2,"open":"true","pId":1,"name":"人事部","isParent":"true"},{"id":3,"open":"true","pId":1,"name":"财务部","isParent":"true"},{"id":4,"open":"true","pId":1,"name":"销售部","isParent":"true"},{"id":5,"open":"true","pId":1,"name":"技术部","isParent":"true"},{"id":6,"open":"true","pId":1,"name":"内容部","isParent":"true"}];
+
+function onClick(e, treeId, treeNode) {
+    $(".selectTxt").text(treeNode.name);
+    $("#departmentId").val(treeNode.id);
+}
+
+$(document).ready(function() {
+    $.fn.zTree.init($("#tree"), setting, zNodes);
+    
+    var treeObj = $.fn.zTree.getZTreeObj("tree");
+    var node = treeObj.getNodeByParam("id", 0, null);
+    treeObj.selectNode(node,false);
+    
+	$(".selectBox").click(function(event) {
+		event.stopPropagation();
+		$(this).find(".option").toggle();
+		$(this).parent().siblings().find(".option").hide();
+	});
+	
+	$(document).click(function(event) {
+		var e = $(event.target);
+		if ($(".selectBox").is(":visible") && e.attr("class") != "option"	&& !e.parent(".option").length) {
+			$('.option').hide();
+		}	
+	});
+});
+
+$(document).ready(function() {
+	$("#submitBtn").click(function() {
+		if (checkData()) {
+		    isExist();
+		}
+	});
+});
+
+function checkData() {
+    if (!checkNull("#username", "名称"))
+		return false;
+				
+    if (!checkNull("#password", "密码"))
+		return false;
+		
+	if (!checkMin("#password", 6, "密码"))
+		return false;	
+	
+	if (!checkEmail("#email"))
+		return false;	
+	
+	if (!checkMax("#note", 500, "描述"))
+		return false;	
+				
+	return true;
+}
+
+function isExist() {
+	var url = "isExist.htm";
+  	$.post(url, {username:$("#username").val()},function(data) {
+  	    if(data.isExist){
+  		    alert(data.msg);
+  		    return false;
+  		} else {
+  		    $("#form1").submit();
+  		}
+    }, "json");
+}
+</script>
+</body>
+</html>

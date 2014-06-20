@@ -1,0 +1,197 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>角色列表</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../js/common/jquery-common.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+<script src="../widget/My97DatePicker/WdatePicker.js"></script>
+</head>
+
+<body>
+<form name="form1" id="form1" action="roleList.htm" method="post">
+<input type="hidden" name="id"/>
+<input type="hidden" name="pn" value="1"/>
+<input type="hidden" name="orderby" value="role.id"/>
+<input type="hidden" name="descflag"/>
+<div class="container-fluid">
+  <ul class="breadcrumb">
+    <li class="active"><strong><i class="icon-th-large"></i> <a href="roleList.htm" class="black">角色管理</a></strong></li>
+  </ul>
+  <table class="table-page">
+    <tr>
+      <td>
+        <button type="button" class="btn" onclick="openRoleEditDialog();"><i class="icon-plus"></i> 新建角色</button>
+      </td>
+      <td width="70%" align="right"><div class="page-list">
+  <div class="page">
+    <div class="recordcount">共 <font color="red">4</font> 条记录&nbsp;</div>
+  	<span class="prev">上一页</span>
+  		<span class="current" onclick="goPage(1);">1</span>
+  	<span class="next">下一页</span>
+  </div>	 
+</div>
+<script>
+function goPage(pn) {
+	document.form1.pn.value = pn;
+	document.form1.submit();
+}
+</script> 
+              </td>
+    </tr>
+  </table>
+  <table class="table table-bordered table-condensed">
+    <thead>
+    <tr>
+      <th width="30">序号</th>
+      <th>名称</th>
+      <th>说明</th>
+      <th width="190">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="h25 tc">1</td>
+      <td class="h25 tc">系统管理员</td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">
+        <a href="rolePrivilegeSet.htm?roleId=1">权限设置</a>
+        |&nbsp;<a href="roleView.htm?id=1">查看</a>
+        |&nbsp;<a href="javascript:;" onclick="openRoleEditDialog(1);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('1');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc">2</td>
+      <td class="h25 tc">技术</td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">
+        <a href="rolePrivilegeSet.htm?roleId=2">权限设置</a>
+        |&nbsp;<a href="roleView.htm?id=2">查看</a>
+        |&nbsp;<a href="javascript:;" onclick="openRoleEditDialog(2);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('2');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc">3</td>
+      <td class="h25 tc">编辑</td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">
+        <a href="rolePrivilegeSet.htm?roleId=3">权限设置</a>
+        |&nbsp;<a href="roleView.htm?id=3">查看</a>
+        |&nbsp;<a href="javascript:;" onclick="openRoleEditDialog(3);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('3');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25 tc">4</td>
+      <td class="h25 tc">销售</td>
+      <td class="h25 tc"></td>
+      <td class="h25 tc">
+        <a href="rolePrivilegeSet.htm?roleId=4">权限设置</a>
+        |&nbsp;<a href="roleView.htm?id=4">查看</a>
+        |&nbsp;<a href="javascript:;" onclick="openRoleEditDialog(4);">修改</a>
+        |&nbsp;<a href="javascript:;" onclick="return deleteIt('4');">删除</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+      <td class="h25">&nbsp;</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</form>
+<div id="popWindow"></div>
+<script>    
+function queryIt() {
+    document.form1.pn.value = "1";
+    document.form1.submit();
+}
+
+function sortIt(orderby,descflag) {
+    document.form1.pn.value = "1";
+    document.form1.orderby.value = orderby;
+    document.form1.descflag.value = descflag;
+    document.form1.submit();
+}
+
+function deleteIt(id) {
+    var result = window.confirm("您确认要删除吗？");
+    if (!result) {
+        return false; 
+    }
+    var url = "roleDelete.htm?id=" + id;
+  	$.post(url, function(data) {
+  		alert(data.msg);
+  		window.location.reload();
+    }, "json");
+}
+
+function deleteSelect() {
+	var ids = getCheckBoxSelectValue("chkId");
+	if(ids == ""){
+	    alert ("请选择删除对象！");
+		return false;
+	}
+
+	var result = window.confirm("您确认要删除所选吗？");
+	if (!result) {
+		return false; 
+	}
+	var url = "roleDeleteSelect.htm?ids=" + ids;
+  	$.post(url, function(msg) {
+  		alert(data.msg);
+  		window.location.reload();
+    }, "json");
+}
+
+$.ajaxSetup ({
+    cache: false
+});
+
+function openRoleEditDialog(id) {
+	$("#popWindow").load("roleEditDialog.htm?id=" + id,function() {
+	    $('#roleEditDialog').modal({backdrop:false,keyboard:true,show:true},'show');
+	});
+}
+
+</script>
+</body>
+</html>

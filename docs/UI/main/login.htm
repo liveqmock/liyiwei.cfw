@@ -1,0 +1,86 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>登录</title>
+<link id="bs-css" href="../widget/charisma/css/bootstrap-spacelab.css" rel="stylesheet">
+<link href="../widget/charisma/css/charisma-app.css" rel="stylesheet">
+<script src="../js/jquery/jquery-1.7.1.js"></script>
+<script src="../js/jquery/jquery.cookie.js"></script>
+<script src="../js/common/jquery-common.js"></script>
+<script src="../widget/charisma/js/bootstrap.js"></script>
+</head>
+
+<body>
+<input type="hidden" id="height" name="height"/>
+<div class="container-fluid">
+  <div class="row">
+	<div class="span12 login-header"></div>
+    <div class="span6 offset5">
+      <div class="well">
+        <legend><img src="../images/logo20.png"/> <strong>通用框架系统</strong></legend>
+            <div class="alert alert-info">
+                <a class="close" data-dismiss="alert" href="#">x</a><span></span>
+            </div>      
+            <div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span><input class="span3" placeholder="用户名" type="text" id="username" name="username"></div>
+            <div class="input-prepend"><span class="add-on"><i class="icon-lock"></i></span><input class="span3" placeholder="密码" type="password" id="password" name="password"></div>
+            <br/>
+            <input type="checkbox" id="remember" name="remember" value="1"> 记住密码　　
+            <button id="login" class="btn-primary btn">　登　录　</button>      
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).keydown(function(event) {
+	if (event.keyCode == 13 || event.keyCode == 10) {
+		login();
+		event.returnValue = false;
+	}
+})
+
+$(document).ready(function() {
+    if($.cookie("username")) {
+        $("#username").val($.cookie("username"));
+        $("#password").val($.cookie("password"));
+        $("[name=remember]:checkbox").attr("checked",true);
+    }
+    $(".alert").hide();
+    $("#username").focus();
+   
+    $("#login").click(function(){
+        login();
+	});
+    $("#height").val(document.documentElement.clientHeight);
+});
+
+function login(){
+    if($("[name=remember]:checkbox").attr("checked") == "checked") {
+        $.cookie("username",$("#username").val());
+        $.cookie("password",$("#password").val());
+        $.cookie("remember",$("#remember").val());
+    } else {
+        $.cookie("username",null);
+        $.cookie("password",null);
+        $.cookie("remember",null);
+    }
+        
+    if (!checkData()) {
+        return false;
+    }
+
+    location.href = "main.htm";
+}
+
+function checkData(){
+    if (!checkNull("#username", "用户名"))
+		return false;
+	if (!checkNull("#password", "密码"))
+		return false;	
+		
+    return true;
+}
+</script>
+</body>
+</html>
